@@ -1,0 +1,29 @@
+$(document).ready(function(){
+    $("#g").click(function(){
+        $.ajax({
+            type:"GET",
+            url:"https://jsonplaceholder.typicode.com/users",
+            success:function(data){
+                //console.log(data);
+                var output= "<table class='table'> <thead class='card-header'> <tr> <th>  ID </th><th> Name </th><th> Username </th><th> street </th><th> suite </th><th> city </th><th> zipcode </th><th> phone </th><th> website </th><th> company name </th></tr> </thead> ";
+                for( var i in data)
+                {
+                    output+="<tr class = 'card-body'><td>"+  data[i].id  +"</td>";
+                    output+="<td>"+  data[i].name      +"</td>";
+                    output+="<td>"+  data[i].username  +"</td>";
+                    output+="<td>"+  data[i].address.street   +"</td>";
+                    output+="<td>"+  data[i].address.suite   +"</td>";
+                    output+="<td>"+  data[i].address.city   +"</td>";
+                    output+="<td>"+  data[i].address.zipcode   +"</td>";
+                    output+="<td>"+  data[i].phone  +"</td>";
+                    output+="<td>"+  data[i].website  +"</td>";
+                    output+="<td>"+  data[i].company.name   +"</td></tr>";
+                }
+                output+="</table>";
+                $(".show").html(output);
+
+
+            }
+        });
+    });
+});
